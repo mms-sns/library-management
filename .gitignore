@@ -1,0 +1,61 @@
+# Laravel & Dependencies
+/node_modules
+/vendor
+/public/build
+/public/fonts-manifest.dev.json
+/public/hot
+/public/storage
+/storage/*.key
+/storage/oauth-*.key
+/storage/pail
+/auth.json
+
+# Environment files
+.env
+.env.backup
+.env.production
+.env.local
+.env.*.local
+
+# Databases & Logs
+*.log
+*.sqlite
+*.sqlite-journal
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing & Cache
+.phpunit.result.cache
+/.phpunit.cache
+
+# IDEs, Editors & Helpers
+.phpactor.json
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+Homestead.json
+Homestead.yaml
+/.fleet
+/.idea
+/.vscode
+/.zed
+/.nova
+/.cursor/
+/.codex
+/.gemini
+
+# OS & Temporary files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.swp
+*.swo
+*~
+*.bak
