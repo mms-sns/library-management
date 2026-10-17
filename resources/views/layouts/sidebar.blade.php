@@ -163,11 +163,24 @@
                     <li>
                         <a
                             href="{{ route('library.show') }}"
-                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('library.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
+                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('library.show') || request()->routeIs('library.edit') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
                         >
-                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('library.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('library.show') || request()->routeIs('library.edit') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             Library Config
-                            @if(request()->routeIs('library.*'))
+                            @if(request()->routeIs('library.show') || request()->routeIs('library.edit'))
+                                <span class="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-l bg-primary"></span>
+                            @endif
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="{{ route('library.landing-page.edit') }}"
+                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('library.landing-page.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
+                        >
+                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('library.landing-page.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            Landing Page
+                            @if(request()->routeIs('library.landing-page.*'))
                                 <span class="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-l bg-primary"></span>
                             @endif
                         </a>

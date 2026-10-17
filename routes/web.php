@@ -17,6 +17,8 @@ use App\Http\Controllers\MembershipPlanController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\LibraryLandingPageController;
+use App\Http\Controllers\PublicLibraryController;
 use App\Http\Controllers\SeatMapController;
 use App\Http\Controllers\SeatTypeController;
 use App\Http\Controllers\StudentController;
@@ -26,6 +28,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+// Public Tenant Library Landing Page
+Route::get('/l/{slug}', [PublicLibraryController::class, 'show'])->name('public.library.show');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -33,6 +38,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/library', [LibraryController::class, 'show'])->name('library.show');
     Route::get('/library/edit', [LibraryController::class, 'edit'])->name('library.edit');
     Route::put('/library', [LibraryController::class, 'update'])->name('library.update');
+
+    // Library Landing Page Configuration
+    Route::get('/library/landing-page', [LibraryLandingPageController::class, 'edit'])->name('library.landing-page.edit');
+    Route::put('/library/landing-page', [LibraryLandingPageController::class, 'update'])->name('library.landing-page.update');
 
     // Branch Management
     Route::resource('branches', BranchController::class)->except(['show']);

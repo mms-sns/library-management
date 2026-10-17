@@ -35,6 +35,11 @@ class Library extends Model
         return $this->hasOne(LibrarySetting::class);
     }
 
+    public function landingPage(): HasOne
+    {
+        return $this->hasOne(LibraryLandingPage::class);
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

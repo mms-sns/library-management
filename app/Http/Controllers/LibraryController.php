@@ -14,8 +14,8 @@ class LibraryController extends Controller
     {
         $user = $request->user();
         $library = $user->isSuperAdmin()
-            ? Library::with(['branches', 'settings'])->firstOrFail()
-            : $user->library->load(['branches', 'settings']);
+            ? Library::with(['branches', 'settings', 'landingPage'])->firstOrFail()
+            : $user->library->load(['branches', 'settings', 'landingPage']);
 
         $this->authorize('view', $library);
 
