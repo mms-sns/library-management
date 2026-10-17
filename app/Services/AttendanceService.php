@@ -36,7 +36,7 @@ class AttendanceService
                 ?? $student->memberships()->latest()->value('branch_id')
                 ?? \App\Models\Branch::where('library_id', $student->library_id)->value('id');
 
-            $seatId = $data['seat_id'] ?? $activeMembership?->seat_id;
+            $seatId = $data['seat_id'] ?? $student->seat_id ?? $activeMembership?->seat_id;
             $idCardId = $data['id_card_id'] ?? $student->activeIdCard?->id;
 
             return Attendance::create([

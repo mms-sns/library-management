@@ -14,6 +14,7 @@ class Student extends Model
 
     protected $fillable = [
         'library_id',
+        'seat_id',
         'user_id',
         'student_number',
         'first_name',
@@ -47,6 +48,11 @@ class Student extends Model
     public function library(): BelongsTo
     {
         return $this->belongsTo(Library::class);
+    }
+
+    public function seat(): BelongsTo
+    {
+        return $this->belongsTo(Seat::class);
     }
 
     public function user(): BelongsTo
@@ -87,5 +93,26 @@ class Student extends Model
     public function activeAttendance()
     {
         return $this->hasOne(Attendance::class)->where('status', 'present')->latestOfMany();
+    }
+
+    public function getPendingInvoiceAttribute(): ?Invoice
+    {
+        return $this->invoices
+            ->filter(fn($inv) => $inv->balance_amount > 0 && $inv->status !== 'cancelled')
+            ->sortBy('due_date')
+            ->first();
+    }
+
+    public function getActiveMembershipAttribute(): ?Membership
+    {
+        return $this->memberships->first(fn($m) => $m->status === 'active' && !$m->end_date->isPast())
+            ?? $this->memberships->first();
+    }
+
+    public function getTotalDueAmountAttribute(): float
+    {
+        return (float) $this->invoices
+            ->where('status', '!=', 'cancelled')
+            ->sum('balance_amount');
     }
 }

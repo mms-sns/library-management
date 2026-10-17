@@ -72,4 +72,20 @@ class Invoice extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function isOverdue(): bool
+    {
+        return $this->balance_amount > 0
+            && $this->due_date
+            && $this->due_date->startOfDay()->lt(now()->startOfDay());
+    }
+
+    public function daysUntilDue(): int
+    {
+        if (!$this->due_date) {
+            return 0;
+        }
+
+        return (int) now()->startOfDay()->diffInDays($this->due_date->startOfDay(), false);
+    }
 }

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
-use App\Models\Floor;
-use App\Models\Room;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -22,36 +20,32 @@ class SeatMapController extends Controller
 
         $selectedBranchId = $request->input('branch_id', $branches->first()?->id);
 
-        $floors = Floor::where('branch_id', $selectedBranchId)->get();
-        $rooms = Room::where('branch_id', $selectedBranchId)->get();
-
-        $query = Seat::with(['seatType', 'floor', 'room'])
+        $query = Seat::with(['student'])
             ->where('branch_id', $selectedBranchId);
 
-        if ($floorId = $request->input('floor_id')) {
-            $query->where('floor_id', $floorId);
+        if ($status = $request->input('status')) {
+            $query->where('status', $status);
         }
 
-        if ($roomId = $request->input('room_id')) {
-            $query->where('room_id', $roomId);
+        if ($search = $request->input('search')) {
+            $query->where('seat_number', 'like', "%{$search}%");
         }
 
         $seats = $query->orderBy('seat_number')->get();
 
-        // Calculate Occupancy Metrics
-        $totalSeats = $seats->count();
-        $availableSeats = $seats->where('status', 'available')->count();
-        $occupiedSeats = $seats->where('status', 'occupied')->count();
-        $reservedSeats = $seats->where('status', 'reserved')->count();
-        $maintenanceSeats = $seats->where('status', 'maintenance')->count();
+        // Calculate Occupancy Metrics for selected branch
+        $allBranchSeats = Seat::where('branch_id', $selectedBranchId)->get();
+        $totalSeats = $allBranchSeats->count();
+        $availableSeats = $allBranchSeats->where('status', 'available')->count();
+        $occupiedSeats = $allBranchSeats->where('status', 'occupied')->count();
+        $reservedSeats = $allBranchSeats->where('status', 'reserved')->count();
+        $maintenanceSeats = $allBranchSeats->where('status', 'maintenance')->count();
 
         $occupancyRate = $totalSeats > 0 ? round(($occupiedSeats / $totalSeats) * 100, 1) : 0;
 
         return view('seats.map', compact(
             'branches',
             'selectedBranchId',
-            'floors',
-            'rooms',
             'seats',
             'totalSeats',
             'availableSeats',

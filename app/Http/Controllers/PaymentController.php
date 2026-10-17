@@ -56,6 +56,11 @@ class PaymentController extends Controller
 
         $payment = $this->invoiceService->recordPayment($invoice, $validated);
 
+        if ($request->input('redirect_to') === 'students') {
+            return redirect()->route('students.index')
+                ->with('status', "Payment #{$payment->payment_number} of ₹" . number_format($payment->amount, 2) . " recorded successfully for {$invoice->student->full_name}.");
+        }
+
         return redirect()->route('invoices.show', $invoice)
             ->with('status', "Payment #{$payment->payment_number} of ₹" . number_format($payment->amount, 2) . " recorded successfully.");
     }

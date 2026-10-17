@@ -58,7 +58,7 @@
                             class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('students.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
                         >
                             <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('students.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                            Students Directory
+                            Students
                             @if(request()->routeIs('students.*'))
                                 <span class="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-l bg-primary"></span>
                             @endif
@@ -87,11 +87,23 @@
                     <li>
                         <a
                             href="{{ route('memberships.index') }}"
-                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('memberships.*') || request()->routeIs('membership-plans.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
+                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('memberships.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
                         >
-                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('memberships.*') || request()->routeIs('membership-plans.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
-                            Memberships & Plans
-                            @if(request()->routeIs('memberships.*') || request()->routeIs('membership-plans.*'))
+                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('memberships.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                            Student Memberships
+                            @if(request()->routeIs('memberships.*'))
+                                <span class="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-l bg-primary"></span>
+                            @endif
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ route('membership-plans.index') }}"
+                            class="group relative flex items-center gap-3 rounded-lg py-2.5 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-boxdark-2 hover:text-white {{ request()->routeIs('membership-plans.*') ? 'bg-boxdark-2 text-white font-semibold' : '' }}"
+                        >
+                            <svg class="w-5 h-5 text-bodydark group-hover:text-primary transition {{ request()->routeIs('membership-plans.*') ? 'text-primary' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            Membership Packages
+                            @if(request()->routeIs('membership-plans.*'))
                                 <span class="absolute right-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-l bg-primary"></span>
                             @endif
                         </a>

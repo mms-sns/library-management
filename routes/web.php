@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('branches', BranchController::class)->except(['show']);
 
     // Student Management (Phase 2)
+    Route::get('/students/{student}/print-id-card', [StudentController::class, 'printIdCard'])->name('students.print-id-card');
     Route::resource('students', StudentController::class);
 
     // Physical Library & Seat Management (Phase 3)

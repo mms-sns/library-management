@@ -16,6 +16,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:100',
             'last_name' => 'nullable|string|max:100',
+            'seat_id' => 'nullable|exists:seats,id',
             'gender' => 'required|in:male,female,other,prefer_not_to_say',
             'date_of_birth' => 'nullable|date',
             'mobile' => 'required|string|max:20',
@@ -35,6 +36,13 @@ class StoreStudentRequest extends FormRequest
             'guardian_alternate_mobile' => 'nullable|string|max:20',
             'guardian_email' => 'nullable|email|max:255',
             'guardian_address' => 'nullable|string',
+
+            // Membership Plan (Optional)
+            'membership_plan_id' => 'nullable|exists:membership_plans,id',
+            'membership_start_date' => 'nullable|date',
+            'membership_discount' => 'nullable|numeric|min:0',
+            'membership_payment_status' => 'nullable|in:unpaid,paid',
+            'membership_payment_method' => 'nullable|in:cash,upi,card,netbanking',
         ];
     }
 }

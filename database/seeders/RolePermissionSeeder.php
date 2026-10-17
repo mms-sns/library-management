@@ -48,6 +48,11 @@ class RolePermissionSeeder extends Seeder
             'seats.assign',
             'seats.release',
 
+            'memberships.view',
+            'memberships.create',
+            'memberships.renew',
+            'memberships.cancel',
+
             'attendance.view',
             'attendance.scan',
             'attendance.edit',
@@ -104,6 +109,7 @@ class RolePermissionSeeder extends Seeder
             'students.view', 'students.create', 'students.update',
             'admissions.view', 'admissions.create',
             'seats.view', 'seats.assign', 'seats.release',
+            'memberships.view', 'memberships.create', 'memberships.renew',
             'attendance.view', 'attendance.scan', 'attendance.edit',
             'invoices.view', 'invoices.create',
             'payments.view', 'payments.create',
@@ -119,6 +125,7 @@ class RolePermissionSeeder extends Seeder
             'students.view',
             'admissions.view',
             'seats.view',
+            'memberships.view',
             'attendance.view', 'attendance.scan',
             'invoices.view',
             'payments.view', 'payments.create',

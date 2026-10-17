@@ -16,6 +16,7 @@ class UpdateStudentRequest extends FormRequest
         return [
             'first_name' => 'required|string|max:100',
             'last_name' => 'nullable|string|max:100',
+            'seat_id' => 'nullable|exists:seats,id',
             'gender' => 'required|in:male,female,other,prefer_not_to_say',
             'date_of_birth' => 'nullable|date',
             'mobile' => 'required|string|max:20',

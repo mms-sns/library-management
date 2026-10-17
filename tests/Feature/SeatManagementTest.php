@@ -76,6 +76,8 @@ class SeatManagementTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Interactive Seat Map');
         $response->assertSee('A-01');
-        $response->assertSee('CAB-01');
+        $response->assertDontSee('Filter Floor');
+        $response->assertDontSee('Filter Room');
+        $response->assertDontSee('Seat Packages');
     }
 }

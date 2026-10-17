@@ -10,7 +10,10 @@
                 </h2>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-xl bg-gray-100 dark:bg-boxdark-2 px-4 py-2 font-semibold text-xs text-gray-700 dark:text-bodydark hover:bg-gray-200 dark:hover:bg-strokedark transition">
+                <a href="{{ route('students.show', $idCard->student) }}" class="inline-flex items-center gap-1.5 rounded-xl bg-gray-100 dark:bg-boxdark-2 px-3.5 py-2 font-semibold text-xs text-gray-700 dark:text-bodydark hover:bg-gray-200 dark:hover:bg-strokedark transition print:hidden">
+                    👤 Back to Student
+                </a>
+                <button onclick="window.print()" class="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 font-semibold text-xs text-white shadow hover:bg-opacity-90 transition print:hidden">
                     🖨️ Print ID Card
                 </button>
             </div>
@@ -51,7 +54,7 @@
                     <!-- Photo Box -->
                     <div class="h-24 w-20 flex-shrink-0 rounded-xl bg-gray-100 dark:bg-boxdark-2 border border-stroke dark:border-strokedark overflow-hidden flex items-center justify-center font-bold text-xl text-primary shadow-inner">
                         @if($idCard->student->photo)
-                            <img src="{{ Storage::url($idCard->student->photo) }}" class="h-full w-full object-cover" />
+                            <img src="{{ asset('storage/' . $idCard->student->photo) }}" class="h-full w-full object-cover" />
                         @else
                             {{ strtoupper(substr($idCard->student->first_name, 0, 1)) }}
                         @endif
@@ -114,4 +117,14 @@
         </div>
 
     </div>
+
+    @if(request('print'))
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                window.print();
+            }, 350);
+        });
+    </script>
+    @endif
 </x-app-layout>
