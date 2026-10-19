@@ -23,28 +23,28 @@
         <!-- Scripts & Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-gray-100 text-slate-800 dark:bg-boxdark-2 dark:text-bodydark1">
+    <body class="font-sans antialiased bg-gray-100 text-slate-800 dark:bg-boxdark-2 dark:text-bodydark1 print:bg-white print:text-black">
         <!-- Page Wrapper -->
-        <div class="flex h-screen overflow-hidden">
+        <div class="flex h-screen overflow-hidden print:h-auto print:overflow-visible print:block">
 
             <!-- TailAdmin Sidebar -->
             @include('layouts.sidebar')
 
             <!-- Content Area -->
-            <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+            <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden print:h-auto print:overflow-visible print:block">
 
                 <!-- TailAdmin Header -->
                 @include('layouts.header')
 
                 <!-- Main Content Slot -->
-                <main class="w-full">
+                <main class="w-full print:w-full print:p-0">
                     @isset($header)
-                        <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 border-b border-stroke dark:border-strokedark bg-white dark:bg-boxdark">
+                        <div class="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8 border-b border-stroke dark:border-strokedark bg-white dark:bg-boxdark print:hidden">
                             {{ $header }}
                         </div>
                     @endisset
 
-                    <div class="mx-auto max-w-7xl p-4 md:p-6 2xl:p-10">
+                    <div class="mx-auto max-w-7xl p-4 md:p-6 2xl:p-10 print:max-w-none print:p-0 print:m-0">
                         {{ $slot }}
                     </div>
                 </main>

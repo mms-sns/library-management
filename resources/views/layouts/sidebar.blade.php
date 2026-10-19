@@ -1,7 +1,7 @@
 <!-- TailAdmin Sidebar -->
 <aside
     :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
-    class="absolute left-0 top-0 z-40 flex h-screen w-72 flex-col overflow-y-hidden bg-boxdark duration-300 ease-linear lg:static lg:translate-x-0 border-r border-strokedark"
+    class="absolute left-0 top-0 z-40 flex h-screen w-72 flex-col overflow-y-hidden bg-boxdark duration-300 ease-linear lg:static lg:translate-x-0 border-r border-strokedark print:hidden"
     @click.outside="sidebarToggle = false"
 >
     <!-- SIDEBAR HEADER -->

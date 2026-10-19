@@ -1,5 +1,5 @@
 <!-- TailAdmin Header -->
-<header class="sticky top-0 z-30 flex w-full bg-white dark:bg-boxdark border-b border-stroke dark:border-strokedark shadow-sm">
+<header class="sticky top-0 z-30 flex w-full bg-white dark:bg-boxdark border-b border-stroke dark:border-strokedark shadow-sm print:hidden">
     <div class="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
 
         <!-- Sidebar Toggle & Mobile Brand -->
